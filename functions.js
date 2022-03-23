@@ -140,7 +140,7 @@ function relatedBooks(bookId, authors, books) {
   return;
   return Array(relatedBooks);
 }
-console.log(relatedBooks(50, authors, books));
+// console.log(relatedBooks(50, authors, books));
 
 /**************************************************************
  * friendliestAuthor(authors):
