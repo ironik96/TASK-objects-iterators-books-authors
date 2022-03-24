@@ -139,18 +139,16 @@ function relatedBooks(bookId, authors, books) {
   let relatedAuthors = getBookById(bookId, books).authors.map(
     (author) => author.id
   );
-  // map author id to book array (resulting in array of array)
+  // get their book ids
   let authorIDToBooksArray = authors
     .filter((author) => relatedAuthors.includes(author.id))
     .map((author) => author.books);
-  // flatten nested array
   let relatedBooksIDs = [].concat.apply([], authorIDToBooksArray);
-  // find book title WITH duplicates
-  let relatedBooks = [];
-  relatedBooksIDs.forEach((id) => {
-    relatedBooks.push(books.find((book) => book.id === id).title);
-  });
-  return relatedBooks.sort();
+  // map book ids to book titles and return them
+  return books
+    .filter((book) => relatedBooksIDs.includes(book.id))
+    .map((book) => book.title)
+    .sort();
 }
 // console.log(relatedBooks(50, authors, books));
 /**************************************************************
